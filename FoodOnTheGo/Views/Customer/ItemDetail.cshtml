@@ -1,0 +1,42 @@
+﻿@model FoodOnTheGo.Models.Menu
+
+@{
+    ViewData["Title"] = "ItemDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $("#quantity").on('change keyup paste', function () {
+        ApplyFilter();
+    });
+
+    function ApplyFilter() {
+        alert("press");
+        var quantity = parseInt($("#quantity").val());
+        if (quantity <= 0) {
+            $("#quantity").val("0");
+        }
+        if (quantity > parseInt($("#maxquantity").val())) {
+            $("#quantity").val($("#maxquantity").val());
+        }
+    }
+</script>
+<form asp-action="AddToCart" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <img data-image="@Model.Photo" class="active" src="@Model.Photo" alt="default_image.png">
+        </div>
+        <div class="col-md-6" style="margin-top: 80px;">
+            <h1>@Model.itemname</h1>
+            <p>@Model.description</p>
+            <hr /><br />
+            <span>Quantity (between 1 and @Model.quantity)</span>
+            <input type="number" value="1" id="quantity" name="quantity" min="1" max="@Model.quantity" required />
+            <input type="hidden" id="maxquantity" value="@Model.quantity" />
+            <input type="hidden" name="id" value="@Model.id" />
+            <hr /><br />
+            <span>@Model.price$</span>
+            <input type="submit" value="Add to cart" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

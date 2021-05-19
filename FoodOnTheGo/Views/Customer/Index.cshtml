@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FoodOnTheGo.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Menu</h1>
+
+
+<section class="text-center">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="">
+                    <div class="view zoom overlay z-depth-2 rounded">
+                        <a href="@Url.Action("ItemDetail","Customer",new { id = item.id})">
+                            <div class="mask">
+                                <img class="img-fluid w-100"
+                                     src="@item.Photo">
+                                <div class="mask rgba-black-slight"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="pt-4">
+                        <h5>@item.itemname</h5>
+                        <h6>@item.price</h6>
+                    </div>
+                </div>
+            </div>
+         }
+        </div>
+</section>

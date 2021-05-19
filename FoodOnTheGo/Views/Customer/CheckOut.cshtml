@@ -1,0 +1,71 @@
+﻿@model FoodOnTheGo.Models.Orders
+
+@{
+    ViewData["Title"] = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/CustomTable.css" />
+
+<table class="table">
+    <tr>
+        <th>
+            Status
+        </th>
+        <th>
+            Total Amount
+        </th>
+        <th>
+            Order At
+        </th>
+        <th></th>
+    </tr>
+    <tbody>
+            <tr>
+                <td>@Model.Status</td>
+                <td>@Model.TotalAmount</td>
+                <td>@Model.OrderedAT.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <form asp-action="CheckOutPaid" method="post">
+                        <input type="submit" value="Check Out Details" class="btn btn-primary" />
+                    </form>
+                </td>
+            </tr>
+    </tbody>
+</table>
+
+<h1>Order Items Detail</h1>
+<table class="table">
+    <tr>
+        <th>
+            Photo
+        </th>
+        <th>
+            item name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            price
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model.orderItem)
+        {
+            <tr>
+                <td>
+                    <img src="@item.menu.Photo" class="img-thumbnail img-fluid" height="40" width="100" asp-append-version="true" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.menu.itemname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.menu.price)
+                </td>>
+            </tr>
+        }
+    </tbody>
+</table>

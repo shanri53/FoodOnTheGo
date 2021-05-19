@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FoodOnTheGo.Models.OrderItem>
+
+@{
+    ViewData["Title"] = "ViewPastOrderItems";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/CustomTable.css" />
+<h1>Order Items Detail</h1>
+<table class="table">
+    <tr>
+        <th>
+            Photo
+        </th>
+        <th>
+            item name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            price
+        </th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.menu.Photo" class="img-thumbnail img-fluid" height="40" width="100" asp-append-version="true" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.menu.itemname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.menu.price)
+                </td>>
+            </tr>
+        }
+    </tbody>
+</table>
+
